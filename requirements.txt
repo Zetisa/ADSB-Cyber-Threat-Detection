@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 pandas
 numpy
 scikit-learn
 plotly
 matplotlib
 seaborn
+=======
+pandas
+numpy
+scikit-learn
+plotly
+matplotlib
+seaborn
+>>>>>>> e84427a8fcd2766a79424d0abef90ff3e13c349c
 pyarrow
