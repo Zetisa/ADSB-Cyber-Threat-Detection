@@ -26,6 +26,28 @@ As the backbone of modern air traffic surveillance, ADS-B is vulnerable to vario
 
 ---
 
+## Machine Learning Pipeline
+
+The framework utilizes an unsupervised machine learning approach to detect cyber threats without the need for pre-labeled attack data.
+
+### 1. Core Algorithm: Isolation Forest
+The primary detection engine is an **Isolation Forest**. Unlike traditional models that learn "normal" behavior, this algorithm works by isolating anomalies. It is highly effective for detecting cyber-attacks like spoofing because these attacks often appear as few and different from the majority of normal flight patterns.
+
+### 2. Advanced Feature Engineering
+To improve detection accuracy, the system transforms raw flight data into specialized "physics-aware" features:
+*   **Horizontal Speed:** Derived via the Haversine formula to identify planes exceeding physical limits.
+*   **Vertical Rate & Alt Diff:** Detects sudden, illogical jumps in altitude.
+*   **Time Gap:** Monitors communication frequency to flag potential signal jamming or loss.
+*   **Signal Quality (RSSI & NIC):** Tracks signal strength and navigation integrity categories.
+
+### 3. Heuristic Threat Classification
+Once the ML model flags an anomaly, a rule-based heuristic engine classifies the specific type of threat:
+*   **Jamming:** Identified by abnormal time gaps and rapid signal degradation.
+*   **Spoofing:** Identified by "teleportation" (impossible horizontal speed), erratic altitude changes, and low NIC values.
+*   **Combined Attacks:** Detected when multiple anomalous vectors coincide.
+
+---
+
 ## Tech Stack
 *   **Language:** Python 3.x
 *   **Libraries:** Pandas, NumPy, Scikit-Learn, Matplotlib, PyArrow.
